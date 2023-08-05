@@ -2,7 +2,7 @@ import Modal from 'react-modal'
 import { X } from 'react-feather'
 import styles from './styles.module.css'
 
-export function CreateTaskModal({isOpen}) {
+export function CreateTaskModal({ isOpen, onRequestClose }) {
     return (
         <Modal 
             isOpen={isOpen} 

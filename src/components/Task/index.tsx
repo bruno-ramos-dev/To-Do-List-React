@@ -9,7 +9,10 @@ export function Task({ task, handleToggleTask, handleRemoveTask }) {
                 className={styles.input} 
                 onClick={() => { handleToggleTask(task) }} 
             />
-            <label>task.title</label>
+            <label 
+                className={task.isCompleted ? styles.completed : ''}
+            >   {task.title}
+            </label>
             <div className={styles.buttonsWrapper}>
                 <button 
                     type="button" 

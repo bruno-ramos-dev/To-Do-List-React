@@ -1,34 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Plus } from 'react-feather'
+import styles from './styles/pages/home.module.css'
+import { Task } from './components/Task'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='App'>
+      <section className={styles.container}>
+        <header className={styles.header}><h1>Minhas Tarefas</h1>
+          <button type='button' className={styles.addTaskButton}>
+            Adicionar uma nova tarefa 
+            <Plus />
+          </button>
+        </header>
+
+        <div className={styles.tasks}>
+
+        <Task />
+
+        </div>
+
+      </section>
+
+    </div>
   )
 }
 

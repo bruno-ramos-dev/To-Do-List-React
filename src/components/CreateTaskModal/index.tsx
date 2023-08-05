@@ -1,8 +1,31 @@
 import Modal from 'react-modal'
 import { X } from 'react-feather'
 import styles from './styles.module.css'
+import { ICreateTaskModalProps } from './types'
+import { FormEvent, useState } from 'react'
 
-export function CreateTaskModal({ isOpen, onRequestClose }) {
+export function CreateTaskModal({ isOpen, onRequestClose, tasks, setTasks }: ICreateTaskModalProps) {
+
+    const [newTask, setNewTask] = useState('')
+
+    function handleCreateNewTask(event: FormEvent) {
+        event.preventDefault()
+
+        setTasks(prevState => {
+            return [
+                ...prevState, 
+                {
+                    id: tasks.length + 1, 
+                    title: newTask, 
+                    isCompleted: false
+                }
+            ]
+        })
+
+        setNewTask('')
+        onRequestClose()
+    }
+
     return (
         <Modal 
             isOpen={isOpen} 
@@ -21,7 +44,13 @@ export function CreateTaskModal({ isOpen, onRequestClose }) {
 
             <form onSubmit={handleCreateNewTask}>
                 <label htmlFor='task'>Título da Tarefa</label>
-                <input type='text' name='task' placeholder='Digite aqui sua tarefa' value={newTask} />
+                <input 
+                    type='text' 
+                    name='task' 
+                    placeholder='Digite aqui sua tarefa' 
+                    onChange={(event) => setNewTask(event.target.value)}
+                    value={newTask} 
+                />
                 <button type='submit' className={styles.button}>Adicionar</button>
             </form>
         </Modal>
